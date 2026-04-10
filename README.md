@@ -104,7 +104,5 @@ Below are the base keys securely pre-supplied in the global seeder specifically 
 - **Password:** `Admin@123`
 
 **Normal User Logins:**
-- **Email:** `tannikhil473@gmail.com`
-- **Password:** `Nikhi@15`
 - **Email:** `nikhil@gmail.com`
 - **Password:** `Nikhi@12345`
