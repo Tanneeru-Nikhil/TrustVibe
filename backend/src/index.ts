@@ -73,7 +73,7 @@ app.post('/api/auth/register', async (req: Request, res: Response) => {
     });
 
     const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token, user: { id: user.id, name: user.name, role: user.role } });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email, address: user.address, role: user.role } });
   } catch (error: any) {
     console.error('Registration error:', error);
     res.status(500).json({ error: 'Internal server error: ' + error.message });
@@ -90,7 +90,7 @@ app.post('/api/auth/login', async (req: Request, res: Response) => {
     if (!match) return res.status(400).json({ error: 'Invalid credentials' });
 
     const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
-    res.json({ token, user: { id: user.id, name: user.name, role: user.role } });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email, address: user.address, role: user.role } });
   } catch (error: any) {
     res.status(500).json({ error: 'Internal server error: ' + error.message });
   }
@@ -153,7 +153,7 @@ app.post('/api/admin/users', authenticate, async (req: Request, res: Response) =
       }
     });
 
-    res.json({ success: true, user: { id: user.id, name: user.name, role: user.role } });
+    res.json({ success: true, user: { id: user.id, name: user.name, email: user.email, address: user.address, role: user.role } });
   } catch (error: any) {
     res.status(500).json({ error: 'Internal server error: ' + error.message });
   }
@@ -183,7 +183,7 @@ app.put('/api/admin/users/:id', authenticate, async (req: Request, res: Response
       data: dataToUpdate
     });
 
-    res.json({ success: true, user: { id: updatedUser.id, name: updatedUser.name, role: updatedUser.role } });
+    res.json({ success: true, user: { id: updatedUser.id, name: updatedUser.name, email: updatedUser.email, address: updatedUser.address, role: updatedUser.role } });
   } catch (error: any) {
     res.status(500).json({ error: 'Internal server error: ' + error.message });
   }

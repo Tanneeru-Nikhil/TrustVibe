@@ -77,6 +77,7 @@ const Layout = () => {
               <div className="flex items-center space-x-3 text-sm">
                 <div className="flex flex-col items-end">
                   <span className="font-medium text-slate-800">{user?.name}</span>
+                  <span className="text-xs text-slate-500">{user?.email}</span>
                   {getRoleBadge()}
                 </div>
                 <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200 text-slate-500">
@@ -122,6 +123,7 @@ const Layout = () => {
               </div>
               <div>
                 <div className="font-medium text-slate-800">{user?.name}</div>
+                <div className="text-xs text-slate-500 mb-1">{user?.email}</div>
                 <div>{getRoleBadge()}</div>
               </div>
             </div>

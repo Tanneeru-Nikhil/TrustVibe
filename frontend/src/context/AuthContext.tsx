@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 type User = {
   id: string;
   name: string;
+  email: string;
+  address: string;
   role: 'SYSTEM_ADMIN' | 'NORMAL_USER' | 'STORE_OWNER';
 };
 
