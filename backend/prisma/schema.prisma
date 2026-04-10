@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  address   String
+  role      String   @default("NORMAL_USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ratingsGiven    Rating[] @relation("RatingsGiven")
+  ratingsReceived Rating[] @relation("RatingsReceived")
+}
+
+model Rating {
+  id        String   @id @default(uuid())
+  value     Int      // 1 to 5
+  userId    String   // The user (Normal User) who gave the rating
+  storeId   String   // The user (Store Owner) receiving the rating
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User @relation("RatingsGiven", fields: [userId], references: [id])
+  store User @relation("RatingsReceived", fields: [storeId], references: [id])
+
+  @@unique([userId, storeId]) // A user can rate a store only once, but can update it.
+}
