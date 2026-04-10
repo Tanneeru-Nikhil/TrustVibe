@@ -1,6 +1,6 @@
 node_modules/
 .env
 dist/
-dev.db
 *.db
+*.db-journal
 .DS_Store
