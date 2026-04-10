@@ -10,7 +10,16 @@ dotenv.config();
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5175',
+    'http://localhost:5173',
+    'https://frontend-blush-six-53.vercel.app',
+    /\.vercel\.app$/,
+  ],
+  credentials: true,
+}));
+
 app.use(express.json());
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
